@@ -8,14 +8,14 @@ The Messaging Microservice is designed to facilitate the sending of messages thr
 ## How Does the Application Work
 1. The application exposes a single endpoint, `/sendMessage`, which accepts POST requests with a JSON payload containing the message type, recipient, and content.
 2. The application validates the input fields and uses a mock function to simulate sending messages via different channels.
-3. The status of each message (success or failure) along with relevant information is logged in a PostgreSQL (or SQLite) database for later retrieval and analysis.
+3. The status of each message (success or failure) along with relevant information is logged in a SQLite database for later retrieval and analysis.
 
 ## Steps to Run the Application on Your Local Machine
 
 ### Prerequisites
 - Python 3.6 or higher
 - pip (Python package installer)
-- SQLite or PostgreSQL (for database management)
+- SQLite (for database management)
 
 ### Installation Steps
 1. **Clone the repository:**
@@ -78,3 +78,9 @@ This file contains unit tests for the application. It tests the `/sendMessage` e
 ### `config.py`
 This file holds configuration settings for the application, including the database URI. It can also be expanded to include configurations for message-sending services.
 
+
+## Deploying on AWS cloud
+While I don't have enough free resources left on my account, I normally use AWS
+ECS to deploy applications to the cloud. The steps include, creating a docker file,
+build a Docker image, set up an ECS and push the docker image onto Amazon ECR, after which
+create a task and set it up to use the Docker image. 
