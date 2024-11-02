@@ -3,6 +3,7 @@ from db_setup import db, MessageLog
 from mock_send import send_message_mock
 import config
 
+# setting up the flask application
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = config.DATABASE_URI
 db.init_app(app)
@@ -10,7 +11,7 @@ db.init_app(app)
 
 @app.route('/sendMessage', methods=['POST'])
 def send_message():
-    data = request.get_json()
+    data = request.get_json() # collecting payload
 
     message_type = data.get("type")
     recipient = data.get("recipient")

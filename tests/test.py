@@ -29,7 +29,9 @@ class MessageAPITestCase(unittest.TestCase):
             "recipient": "user@example.com",
             "content": "This should fail due to unsupported type."
         }
-        response = self.client.post('/sendMessage', data=json.dumps(payload), content_type='application/json')
+        response = self.client.post('/sendMessage',
+                                    data=json.dumps(payload),
+                                    content_type='application/json')
 
         # Check if the response indicates failure
         self.assertEqual(response.status_code, 200)
@@ -38,13 +40,15 @@ class MessageAPITestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'Unsupported message type: unsupported_type')
 
     def test_email_failure(self):
-        # Simulate email sending failure
+        # Test sending a message with an invalid email
         payload = {
             "type": "email",
             "recipient": "not a email",
             "content": "This email should fail to send."
         }
-        response = self.client.post('/sendMessage', data=json.dumps(payload), content_type='application/json')
+        response = self.client.post('/sendMessage',
+                                    data=json.dumps(payload),
+                                    content_type='application/json')
 
         # Check if the response indicates failure
         self.assertEqual(response.status_code, 200)
@@ -53,13 +57,15 @@ class MessageAPITestCase(unittest.TestCase):
         self.assertIn("Recipient is not a", data['message'])
 
     def test_sms_failure(self):
-        # Simulate SMS sending failure
+        # Test sending a message with an invalid phone number
         payload = {
             "type": "sms",
             "recipient": "not a number",
             "content": "This SMS should fail to send."
         }
-        response = self.client.post('/sendMessage', data=json.dumps(payload), content_type='application/json')
+        response = self.client.post('/sendMessage',
+                                    data=json.dumps(payload),
+                                    content_type='application/json')
 
         # Check if the response indicates failure
         self.assertEqual(response.status_code, 200)
@@ -68,13 +74,15 @@ class MessageAPITestCase(unittest.TestCase):
         self.assertIn("Recipient is not a", data['message'])
 
     def test_whatsapp_failure(self):
-        # Simulate WhatsApp sending failure
+        # Test sending a whatsapp message with an invalid phone number
         payload = {
             "type": "whatsapp",
             "recipient": "not a number",
             "content": "This WhatsApp message should fail to send."
         }
-        response = self.client.post('/sendMessage', data=json.dumps(payload), content_type='application/json')
+        response = self.client.post('/sendMessage',
+                                    data=json.dumps(payload),
+                                    content_type='application/json')
 
         # Check if the response indicates failure
         self.assertEqual(response.status_code, 200)
@@ -88,7 +96,9 @@ class MessageAPITestCase(unittest.TestCase):
             "type": "email",
             "content": "This message is missing the recipient field."
         }
-        response = self.client.post('/sendMessage', data=json.dumps(payload), content_type='application/json')
+        response = self.client.post('/sendMessage',
+                                    data=json.dumps(payload),
+                                    content_type='application/json')
 
         # Check if the response indicates failure due to missing recipient
         self.assertEqual(response.status_code, 400)
@@ -102,7 +112,9 @@ class MessageAPITestCase(unittest.TestCase):
             "type": "sms",
             "recipient": "+1234567890"
         }
-        response = self.client.post('/sendMessage', data=json.dumps(payload), content_type='application/json')
+        response = self.client.post('/sendMessage',
+                                    data=json.dumps(payload),
+                                    content_type='application/json')
 
         # Check if the response indicates failure due to missing content
         self.assertEqual(response.status_code, 400)

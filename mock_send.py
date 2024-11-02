@@ -4,6 +4,14 @@ from phonenumbers import NumberParseException
 
 
 def send_message_mock(message_type, recipient, content):
+    """
+    This function collects important data to send a message
+    :param message_type: Type of message being sent
+    :param recipient: Recipient email ID/phone number/slack username etc.
+    :param content: Content of message to be sent
+    :return:
+    """
+
     if message_type.lower() == "email":
         all_okay, msg = send_message_email(recipient, content)
         if all_okay:
