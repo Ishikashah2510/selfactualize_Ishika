@@ -3,7 +3,6 @@ import phonenumbers
 from phonenumbers import NumberParseException
 
 
-
 def send_message_mock(message_type, recipient, content):
     if message_type.lower() == "email":
         all_okay, msg = send_message_email(recipient, content)
