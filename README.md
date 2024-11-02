@@ -1,5 +1,5 @@
 # Messaging Microservice
-### Ishika Shah
+### Ishika Shah (ishikashah2510@yahoo.com)
 ### for selfactualize.ai
 
 ## Purpose of the Application
